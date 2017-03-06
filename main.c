@@ -1,9 +1,4 @@
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <dirent.h>
-#include <string.h>
+#include "ft_ls.h"
 
 /*
 --	Checks if there are a hidden file
@@ -59,7 +54,7 @@ int		stats_file(char *file)
 
 	if (file == NULL)
 		printf("no file");
-	if (stat(file, fileStat) < 0)
+	if (stat(file, &fileStat) < 0)
 		return (0);
 	ft_putstr("Taille du fichier : ");
 	ft_putnbr(fileStat.st_size);
@@ -67,7 +62,7 @@ int		stats_file(char *file)
 
 int main (int argc, char **argv)
 {
-	read_in_dir(argv[1]);
+	//read_in_dir(argv[1]);
 
 	stats_file(argv[1]);
 	return (1);
