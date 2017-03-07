@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bzmuda <bzmuda@42.fr>                      +#+  +:+       +#+        */
+/*   By: bzmuda <bzmuda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 19:33:28 by bzmuda            #+#    #+#             */
-/*   Updated: 2016/11/20 14:46:44 by bzmuda           ###   ########.fr       */
+/*   Updated: 2017/01/06 10:41:07 by bzmuda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# include <fcntl.h>
-# define BUFF_SIZE 10
 
 typedef struct		s_list
 {
@@ -30,7 +28,7 @@ typedef struct		s_list
 **	Get next line
 */
 
-int					get_next_line(const int fd, char **line);
+int		get_next_line(const int fd, char **line);
 
 /*
 **	Write
@@ -75,6 +73,7 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
+int					ft_isupper(int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bzmuda <bzmuda@42.fr>                      +#+  +:+       +#+        */
+/*   By: bzmuda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 15:23:25 by bzmuda            #+#    #+#             */
 /*   Updated: 2017/02/28 16:23:44 by bzmuda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
 /*
 **	Join 2 strings into a new string. Free the s° lines if needed
