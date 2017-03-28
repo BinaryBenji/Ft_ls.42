@@ -38,8 +38,7 @@ int		read_in_dir(char *dir)
 		{
 			if (check_dot(file->d_name) != 1)
 			{
-				ft_putstr(file->d_name);
-				ft_putchar('\n');
+				stats_file(file->d_name);
 			}
 		}
 		closedir(rep);	
@@ -47,8 +46,26 @@ int		read_in_dir(char *dir)
 	return (1);
 }
 
+int open_actual_dir()
+{
+	DIR *rep;
+	char cwd[1024];
+	struct dirent* file = NULL;
+	
+
+    rep = opendir(".");
+    //SORT
+    while ((file = readdir(rep)) != NULL)
+	{
+		if (check_dot(file->d_name) != 1)
+			stats_file(file->d_name);
+	}
+    closedir(rep);
+	return (1);
+}
+
 /*
-**	Give stats of a file
+**	Give permissions of a file
 */
 
 void 	print_permissions(char *file, struct stat fileStat) 
@@ -65,20 +82,31 @@ void 	print_permissions(char *file, struct stat fileStat)
     ft_putstr( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
 }
 
-int		stats_file(char *file)
+void	stats_file(char *file)
 {
 	struct stat fileStat;
+	struct group *grp;
+	struct passwd *pwd;
 
 	if (file == NULL)
 		printf("no file");
-	if (stat(file, &fileStat) < 0)
-		return (0);
+	stat(file, &fileStat);
 	print_permissions(file, fileStat);
-	ft_putchar('\t');
+	ft_putstr("  ");
 	ft_putnbr(fileStat.st_nlink);
 	ft_putchar(' ');
-	//ft_putstr(getpwuid());
 
+
+	pwd = getpwuid(fileStat.st_uid);
+	ft_putstr(pwd->pw_name);
+	ft_putstr("  ");
+	grp = getgrgid(fileStat.st_gid);
+	ft_putstr(grp->gr_name);
+	ft_putstr("    ");
+	ft_putnbr(fileStat.st_size);
+	ft_putstr("    ");
+	ft_putstr(file);
+	ft_putchar('\n');
 }
 
 /*struct stat
@@ -98,6 +126,12 @@ time_t st_mtime; / Heure dernière modification *
 time_t st_ctime; / Heure dernier changement 
 */
 
+int decider()
+{
+	
+	
+}
+
 
 
 int main (int argc, char **argv)
@@ -105,10 +139,9 @@ int main (int argc, char **argv)
 	int i;
 
 	i = 0;
-
+	decider();
+	open_actual_dir();
 	//read_in_dir(argv[1]);
-
-
-	stats_file(argv[1]);
+	//stats_file(argv[1]);
 	return (0);
 }

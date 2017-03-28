@@ -7,10 +7,12 @@
 # include <stdlib.h>
 # include <dirent.h>
 # include <string.h>
+# include <pwd.h>
+# include <grp.h>
 # include "libft/libft.h"
 
 int		check_dot(char *str);
 int		read_in_dir(char *dir);
-int		stats_file(char *file);
+void		stats_file(char *file);
 
 #endif
