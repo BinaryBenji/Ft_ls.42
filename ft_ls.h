@@ -11,6 +11,12 @@
 # include <grp.h>
 # include "libft/libft.h"
 
+typedef struct s_star
+{
+	char **file;
+	char *opt;
+}				t_star;
+
 int		check_dot(char *str);
 int		read_in_dir(char *dir);
 void		stats_file(char *file);

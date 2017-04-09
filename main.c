@@ -26,43 +26,43 @@ int		read_in_dir(char *dir)
 	if (dir == NULL)
 		rep = opendir(".");
 	else
-		rep = opendir(dir);
-	if (rep == NULL)
 	{
-		perror("");
-		return (0);
+		if (rep == NULL)
+		{
+			perror("");
+			return (0);
+		}
+		rep = opendir(dir);
 	}
 	else
 	{
 		while ((file = readdir(rep)) != NULL)
 		{
 			if (check_dot(file->d_name) != 1)
-			{
 				stats_file(file->d_name);
-			}
 		}
 		closedir(rep);	
 	}
 	return (1);
 }
 
-int open_actual_dir()
-{
-	DIR *rep;
-	char cwd[1024];
-	struct dirent* file = NULL;
+// int open_actual_dir()
+// {
+// 	DIR *rep;
+// 	char cwd[1024];
+// 	struct dirent* file = NULL;
 	
 
-    rep = opendir(".");
-    //SORT
-    while ((file = readdir(rep)) != NULL)
-	{
-		if (check_dot(file->d_name) != 1)
-			stats_file(file->d_name);
-	}
-    closedir(rep);
-	return (1);
-}
+//     rep = opendir(".");
+//     //SORT
+//     while ((file = readdir(rep)) != NULL)
+// 	{
+// 		if (check_dot(file->d_name) != 1)
+// 			stats_file(file->d_name);
+// 	}
+//     closedir(rep);
+// 	return (1);
+// }
 
 /*
 **	Give permissions of a file
@@ -126,21 +126,65 @@ time_t st_mtime; / Heure dernière modification *
 time_t st_ctime; / Heure dernier changement 
 */
 
-int decider()
-{
-	
-	
-}
-
-
-
-int main (int argc, char **argv)
+int opt_occur(char contender, char *sion)
 {
 	int i;
 
 	i = 0;
-	decider();
-	open_actual_dir();
+	while (sion[i])
+	{
+		if (sion[i] == contender)
+			return (1);
+	}
+	return (0);
+}
+
+t_star analyzer(char **opt, t_star all)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	if (opt[i][j] == '-')
+	{
+		j++;
+		while (ft_isalpha(opt[i][j]))
+		{	
+			if ((opt_occur(opt[i][j]) == 0))
+			{
+				sion[k] = opt[i][j];
+				k++;
+			}
+			j++;
+		}	
+	}
+	// else
+	// {
+	// 	file_parser()
+	// }
+	return (all);
+}
+
+t_star init_star(t_star all)
+{
+	if (!(all = (t_star)malloc(sizeof(all))))
+		return (NULL);
+	if (!(all.file) = (char **)malloc(sizeof(char **)))
+		return (NULL);
+	return (all);
+}
+
+int main (int argc, char **argv)
+{
+	t_star all;
+
+	if ((all = init_star(all)) == NULL)
+		return (NULL);
+	all = analyzer(argv, all);
+	//read_in_dir(argv[1]);
 	//read_in_dir(argv[1]);
 	//stats_file(argv[1]);
 	return (0);
